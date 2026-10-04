@@ -1,0 +1,133 @@
+.hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 420px;
+    background: linear-gradient(135deg, var(--navy) 0%, #2f3f66 100%);
+    color: #ffffff;
+}
+
+.hero-title {
+    color: #ffffff;
+    font-size: 3.6rem;
+    line-height: 1.1;
+}
+
+.hero-text {
+    max-width: 560px;
+    color: #d5d9e3;
+    font-size: 1.1rem;
+}
+
+.hero-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    border: 1px solid var(--brass);
+    color: var(--brass);
+    padding: 0.3rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.category-item {
+    text-decoration: none;
+    text-align: center;
+}
+
+.category-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid var(--line);
+}
+
+.category-item span {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.category-item:hover span {
+    color: var(--brass);
+}
+
+.arrivals {
+    background-color: var(--stone);
+}
+
+.benefits {
+    background-color: #dfe2e8;
+}
+
+.benefits-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.benefit {
+    flex: 1;
+}
+
+.benefit h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.3rem;
+}
+
+.benefit p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 480px;
+}
+
+@media (max-width: 991.98px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits-list {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero {
+        min-height: 340px;
+    }
+
+    .hero-title {
+        font-size: 2.1rem;
+    }
+
+    .hero-badge {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .category-grid {
+        gap: 1rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+}
