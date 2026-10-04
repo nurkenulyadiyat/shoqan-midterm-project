@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart and Checkout — SHOQAN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3 py-3">
+            <a href="index.html" class="logo">SHOQAN</a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="cart.html" class="active" aria-current="page">Cart</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions d-flex align-items-center gap-2">
+                <form class="search-form" action="catalog.html" method="get" role="search">
+                    <input type="search" name="q" class="form-control form-control-sm rounded-0" placeholder="Search" aria-label="Search products">
+                </form>
+                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">3</span></a>
+                <button type="button" class="btn btn-outline-shoqan btn-sm" disabled title="Login page is planned">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-4">
+        <h1 class="mb-4">Cart / Checkout</h1>
+
+        <div class="row g-4">
+            <section class="col-lg-8" aria-label="Items in your cart">
+                <div class="table-responsive">
+                    <table class="table align-middle cart-table">
+                        <caption>3 items in your cart</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col"><span class="visually-hidden">Remove</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cart-product">
+                                        <img src="images/suit-navy.svg" alt="Navy wool suit">
+                                        <a href="product.html">Navy Wool Suit</a>
+                                    </div>
+                                </td>
+                                <td>M</td>
+                                <td><input type="number" class="form-control form-control-sm rounded-0 qty" value="1" min="1" aria-label="Quantity, Navy Wool Suit"></td>
+                                <td>159 900 ₸</td>
+                                <td><a href="cart.html" class="remove-link" aria-label="Remove Navy Wool Suit">&times;</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cart-product">
+                                        <img src="images/shirt-white.svg" alt="White poplin shirt">
+                                        <a href="product.html">Poplin Shirt, White</a>
+                                    </div>
+                                </td>
+                                <td>M</td>
+                                <td><input type="number" class="form-control form-control-sm rounded-0 qty" value="2" min="1" aria-label="Quantity, Poplin Shirt"></td>
+                                <td>45 800 ₸</td>
+                                <td><a href="cart.html" class="remove-link" aria-label="Remove Poplin Shirt">&times;</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cart-product">
+                                        <img src="images/tie-burgundy.svg" alt="Burgundy silk tie">
+                                        <a href="product.html">Silk Tie, Burgundy</a>
+                                    </div>
+                                </td>
+                                <td>One size</td>
+                                <td><input type="number" class="form-control form-control-sm rounded-0 qty" value="1" min="1" aria-label="Quantity, Silk Tie"></td>
+                                <td>12 900 ₸</td>
+                                <td><a href="cart.html" class="remove-link" aria-label="Remove Silk Tie">&times;</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="catalog.html" class="small">Continue shopping</a>
+            </section>
+
+            <aside class="col-lg-4">
+                <div class="summary-box">
+                    <h2 class="summary-title">Order summary</h2>
+                    <ul class="summary-list">
+                        <li><span>Subtotal</span> <span>218 600 ₸</span></li>
+                        <li><span>Delivery</span> <span>Free</span></li>
+                        <li><span>Discount</span> <span>−10 000 ₸</span></li>
+                        <li class="summary-total"><span>Total</span> <span>208 600 ₸</span></li>
+                    </ul>
+
+                    <form class="promo-form mb-3" action="cart.html" method="get">
+                        <label for="promo" class="visually-hidden">Promo code</label>
+                        <input type="text" id="promo" name="promo" class="form-control rounded-0" placeholder="Promo code">
+                        <button type="submit" class="btn btn-outline-shoqan">Apply</button>
+                    </form>
+
+                    <a href="#checkout" class="btn btn-shoqan w-100">Proceed to checkout</a>
+                </div>
+            </aside>
+        </div>
+
+        <section id="checkout" class="pt-5 mt-5 border-top" aria-labelledby="checkout-title">
+            <h2 id="checkout-title" class="mb-4">Checkout details</h2>
+
+            <form action="cart.html#order-confirmation" method="get">
+                <div class="row g-4">
+                    <div class="col-lg-7">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="full-name" class="form-label">Full name</label>
+                                <input type="text" id="full-name" name="name" class="form-control rounded-0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" id="email" name="email" class="form-control rounded-0" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" id="phone" name="phone" class="form-control rounded-0" placeholder="+7 7__ ___ __ __" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" id="city" name="city" class="form-control rounded-0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" id="address" name="address" class="form-control rounded-0" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="postal" class="form-label">Postal code</label>
+                                <input type="text" id="postal" name="postal" class="form-control rounded-0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <label for="delivery" class="form-label">Delivery method</label>
+                        <select id="delivery" name="delivery" class="form-select rounded-0 mb-3">
+                            <option>Courier (1–2 days)</option>
+                            <option>Pickup from boutique</option>
+                            <option>Kazpost (3–5 days)</option>
+                        </select>
+
+                        <fieldset class="mb-3">
+                            <legend class="form-label fs-6">Payment</legend>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="pay-card" value="card" checked>
+                                <label class="form-check-label" for="pay-card">Credit card</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="pay-kaspi" value="kaspi">
+                                <label class="form-check-label" for="pay-kaspi">Kaspi QR</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="payment" id="pay-bank" value="bank">
+                                <label class="form-check-label" for="pay-bank">Bank transfer</label>
+                            </div>
+                        </fieldset>
+
+                        <label for="comment" class="form-label">Order comment</label>
+                        <textarea id="comment" name="comment" rows="3" class="form-control rounded-0 mb-3"></textarea>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                            <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-shoqan w-100">Place order</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <div id="order-confirmation" class="confirm-overlay">
+            <div class="confirm-box text-center">
+                <h2>Thank you!</h2>
+                <p>Your order is placed. We will call you within one hour to confirm delivery time.</p>
+                <a href="index.html" class="btn btn-shoqan">Back to home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <h3 class="footer-title">Shop</h3>
+                    <ul class="footer-links">
+                        <li><a href="catalog.html">Suits</a></li>
+                        <li><a href="catalog.html">Shirts</a></li>
+                        <li><a href="catalog.html">Coats</a></li>
+                        <li><a href="catalog.html">Trousers</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="footer-title">Help</h3>
+                    <ul class="footer-links">
+                        <li><a href="product.html#size-guide">Size guide</a></li>
+                        <li><a href="product.html#delivery">Delivery and returns</a></li>
+                        <li><a href="cart.html">Your cart</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="contact.html#story">Our story</a></li>
+                        <li><a href="contact.html#hours">Opening hours</a></li>
+                        <li><a href="contact.html#message">Write to us</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="footer-title">Boutique</h3>
+                    <address>
+                        Mangilik El Ave 55, Astana<br>
+                        <a href="tel:+77172550055">+7 7172 55 00 55</a><br>
+                        <a href="mailto:hello@shoqan.kz">hello@shoqan.kz</a>
+                    </address>
+                </div>
+            </div>
+
+            <div class="social-links mt-4">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+                <a href="https://t.me" target="_blank" rel="noopener" aria-label="Telegram">TG</a>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+            </div>
+
+            <p class="copyright text-center mt-3 mb-0">&copy; 2026 SHOQAN Classic Menswear. Made by Adiyat Nurkenuly, Bekarys Zhassuzakh, Abubakir Daniyaruly.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
