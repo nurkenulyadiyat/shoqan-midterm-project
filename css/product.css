@@ -1,0 +1,157 @@
+.main-photo {
+    position: relative;
+    margin: 0;
+}
+
+.main-photo img {
+    width: 100%;
+    border: 1px solid var(--line);
+}
+
+.photo-note {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+}
+
+.thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+
+.thumbs img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border: 1px solid var(--line);
+}
+
+.thumbs img:hover {
+    border-color: var(--navy);
+}
+
+.product-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.product-price del {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--muted);
+}
+
+.option-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 0;
+    padding: 0;
+}
+
+.option-label {
+    float: none;
+    width: auto;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.options input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.size-box {
+    min-width: 48px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--ink);
+    text-align: center;
+    cursor: pointer;
+}
+
+.options input:checked + .size-box {
+    background-color: var(--ink);
+    color: #ffffff;
+}
+
+.color-box {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--line);
+    outline-offset: 2px;
+    cursor: pointer;
+}
+
+.options input:checked + .color-box {
+    outline: 2px solid var(--brass);
+}
+
+.options input:focus-visible + label {
+    outline: 2px dashed var(--navy);
+}
+
+#swatch-black {
+    background-color: #1b1c20;
+}
+
+#swatch-navy {
+    background-color: #26365c;
+}
+
+#swatch-grey {
+    background-color: #9a9ea6;
+}
+
+.qty-input {
+    width: 90px;
+}
+
+.info-block {
+    border: 1px solid var(--line);
+    background-color: #ffffff;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.info-block summary {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.info-block[open] summary {
+    margin-bottom: 0.75rem;
+}
+
+.size-table caption {
+    caption-side: top;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 991.98px) {
+    .product-price {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .thumbs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .option-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
