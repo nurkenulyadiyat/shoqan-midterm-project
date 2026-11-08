@@ -295,3 +295,163 @@ img {
         width: 100%;
     }
 }
+
+/* Shared endterm controls retain the midterm colours and spacing. */
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 3px solid var(--brass);
+    outline-offset: 3px;
+}
+
+.header-actions {
+    flex-wrap: wrap;
+}
+
+.theme-toggle {
+    min-width: 108px;
+    white-space: nowrap;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.card-actions .btn {
+    padding: 0.55rem 0.75rem;
+}
+
+.card-actions .btn-shoqan {
+    flex: 1;
+}
+
+.is-favorite {
+    border-color: var(--brass);
+    background-color: #f4ead7;
+}
+
+.field-error {
+    color: #a32130;
+    font-size: 0.875rem;
+    margin: 0.35rem 0 0;
+}
+
+.field-error:empty {
+    display: none;
+}
+
+.form-success {
+    color: #15532f;
+    background-color: #e7f3e8;
+    border: 1px solid #bddac4;
+    padding: 0.85rem 1rem;
+}
+
+.empty-state,
+.notice {
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    background-color: var(--stone);
+}
+
+.site-notice {
+    position: fixed;
+    z-index: 200;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: min(90vw, 600px);
+    width: max-content;
+    padding: 0.85rem 1.2rem;
+    background-color: #1e2a47;
+    color: #fff;
+    border: 1px solid #a8834a;
+    box-shadow: 0 4px 20px #0003;
+    border-radius: 2px;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --navy: #d4def2;
+    --ink: #e4e9f2;
+    --paper: #151923;
+    --stone: #242b3a;
+    --line: #49546b;
+    --muted: #b5bfd1;
+    --bs-body-color: #e4e9f2;
+    --bs-body-bg: #151923;
+    --bs-secondary-color: #b5bfd1;
+    --bs-border-color: #49546b;
+    --bs-emphasis-color: #f5f7fc;
+}
+
+html[data-theme="dark"] .site-header,
+html[data-theme="dark"] .product-card,
+html[data-theme="dark"] .filters,
+html[data-theme="dark"] .summary-box,
+html[data-theme="dark"] .confirm-box {
+    background-color: #1d2432;
+}
+
+html[data-theme="dark"] .site-footer {
+    background-color: #10141c;
+}
+
+html[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #1e2a47 0%, #2f3f66 100%);
+}
+
+html[data-theme="dark"] .benefits {
+    background-color: #1d2432;
+}
+
+html[data-theme="dark"] .btn-shoqan {
+    color: #fff;
+    background-color: #344566;
+    border-color: #667aa1;
+}
+
+html[data-theme="dark"] .btn-shoqan:hover {
+    background-color: #405780;
+}
+
+html[data-theme="dark"] .is-favorite {
+    background-color: #4c3e27;
+}
+
+html[data-theme="dark"] .field-error {
+    color: #ffb2b9;
+}
+
+html[data-theme="dark"] .form-success {
+    color: #c9f6d9;
+    background-color: #193a2b;
+    border-color: #46765c;
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .form-check-input {
+    color: var(--ink);
+    background-color: #1d2432;
+    border-color: #66728a;
+}
+
+html[data-theme="dark"] .form-check-input:checked {
+    background-color: #526b9a;
+}
+
+html[data-theme="dark"] .table {
+    --bs-table-color: #e4e9f2;
+    --bs-table-bg: #1d2432;
+    --bs-table-border-color: #49546b;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+}

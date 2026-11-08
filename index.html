@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHOQAN — Classic Menswear</title>
+    <link rel="icon" href="images/suit-navy.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
@@ -31,8 +32,8 @@
                 <form class="search-form" action="catalog.html" method="get" role="search">
                     <input type="search" name="q" class="form-control form-control-sm rounded-0" placeholder="Search" aria-label="Search products">
                 </form>
-                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">3</span></a>
-                <button type="button" class="btn btn-outline-shoqan btn-sm" disabled title="Login page is planned">Login</button>
+                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">0</span></a>
+                <button type="button" class="btn btn-outline-shoqan btn-sm theme-toggle" aria-pressed="false">Dark mode</button>
             </div>
         </div>
     </header>
@@ -50,19 +51,19 @@
         <section class="container py-5" aria-labelledby="categories-title">
             <h2 id="categories-title" class="section-title">Shop by category</h2>
             <div class="category-grid">
-                <a href="catalog.html" class="category-item">
+                <a href="catalog.html?category=suits" class="category-item">
                     <img src="images/suit-navy.svg" alt="Navy suit jacket">
                     <span>Suits</span>
                 </a>
-                <a href="catalog.html" class="category-item">
+                <a href="catalog.html?category=shirts" class="category-item">
                     <img src="images/shirt-white.svg" alt="White dress shirt">
                     <span>Shirts</span>
                 </a>
-                <a href="catalog.html" class="category-item">
+                <a href="catalog.html?category=coats" class="category-item">
                     <img src="images/coat-camel.svg" alt="Camel wool coat">
                     <span>Coats</span>
                 </a>
-                <a href="catalog.html" class="category-item">
+                <a href="catalog.html?category=accessories" class="category-item">
                     <img src="images/tie-burgundy.svg" alt="Burgundy silk tie">
                     <span>Accessories</span>
                 </a>
@@ -72,41 +73,8 @@
         <section class="arrivals py-5" aria-labelledby="arrivals-title">
             <div class="container">
                 <h2 id="arrivals-title" class="section-title">New arrivals</h2>
-                <div class="row g-4">
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="product-card">
-                            <img src="images/suit-charcoal.svg" alt="Charcoal two-piece suit">
-                            <h3><a href="product.html">Charcoal Two-Piece Suit</a></h3>
-                            <p class="price">149 900 ₸</p>
-                            <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="product-card">
-                            <img src="images/shirt-blue.svg" alt="Light blue oxford shirt">
-                            <h3><a href="product.html">Oxford Shirt, Sky Blue</a></h3>
-                            <p class="price">24 900 ₸</p>
-                            <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="product-card">
-                            <span class="badge-sale">−20%</span>
-                            <img src="images/coat-grey.svg" alt="Grey double-breasted coat">
-                            <h3><a href="product.html">Double-Breasted Coat</a></h3>
-                            <p class="price">127 900 ₸ <del>159 900 ₸</del></p>
-                            <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                        </article>
-                    </div>
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <article class="product-card">
-                            <img src="images/trousers-grey.svg" alt="Grey flannel trousers">
-                            <h3><a href="product.html">Flannel Trousers</a></h3>
-                            <p class="price">34 900 ₸</p>
-                            <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                        </article>
-                    </div>
-                </div>
+                <div id="arrival-products" class="row g-4"></div>
+                <noscript><p>Please enable JavaScript to browse interactive product cards, or <a href="catalog.html">open the catalog</a>.</p></noscript>
             </div>
         </section>
 
@@ -118,7 +86,7 @@
                 </div>
                 <div class="benefit">
                     <h3>Delivery across Kazakhstan</h3>
-                    <p>Free courier delivery in Astana and Almaty on orders over 50 000 ₸.</p>
+                    <p>Free courier delivery on orders from 50 000 ₸ before discounts; 2 000 ₸ below that amount. Boutique pickup is free.</p>
                 </div>
                 <div class="benefit">
                     <h3>14-day returns</h3>
@@ -130,11 +98,14 @@
         <section class="container py-5 text-center" aria-labelledby="newsletter-title">
             <h2 id="newsletter-title">Newsletter</h2>
             <p class="text-muted mb-4">New collections and private sale dates, once a month.</p>
-            <form class="newsletter-form mx-auto" action="#" method="get">
+            <form id="newsletter-form" class="newsletter-form mx-auto" action="#" method="get" novalidate>
                 <label for="newsletter-email" class="visually-hidden">Email address</label>
-                <input type="email" id="newsletter-email" name="email" class="form-control rounded-0" placeholder="Enter your email" required>
+                <input type="email" id="newsletter-email" name="email" aria-describedby="newsletter-error" autocomplete="email" class="form-control rounded-0" placeholder="Enter your email" required>
                 <button type="submit" class="btn btn-shoqan">Subscribe</button>
             </form>
+            <p id="newsletter-error" class="field-error mt-2" role="alert"></p>
+            <p id="newsletter-success" class="form-success mt-2" role="status" hidden></p>
+            <p class="small text-muted mt-2">Student demo: the form validates your email locally.</p>
         </section>
     </main>
 
@@ -144,10 +115,10 @@
                 <div class="col-6 col-md-3">
                     <h3 class="footer-title">Shop</h3>
                     <ul class="footer-links">
-                        <li><a href="catalog.html">Suits</a></li>
-                        <li><a href="catalog.html">Shirts</a></li>
-                        <li><a href="catalog.html">Coats</a></li>
-                        <li><a href="catalog.html">Trousers</a></li>
+                        <li><a href="catalog.html?category=suits">Suits</a></li>
+                        <li><a href="catalog.html?category=shirts">Shirts</a></li>
+                        <li><a href="catalog.html?category=coats">Coats</a></li>
+                        <li><a href="catalog.html?category=trousers">Trousers</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3">
@@ -186,5 +157,8 @@
         </div>
     </footer>
 
+    <script src="js/data.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/home.js" defer></script>
 </body>
 </html>
