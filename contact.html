@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/suit-navy.svg" type="image/svg+xml">
     <title>About and Contact — SHOQAN</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,6 +11,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/contact.css">
+    <script src="js/data.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/vendor/jquery.min.js" defer></script>
+    <script src="js/contact.js" defer></script>
 </head>
 <body>
 
@@ -31,8 +36,8 @@
                 <form class="search-form" action="catalog.html" method="get" role="search">
                     <input type="search" name="q" class="form-control form-control-sm rounded-0" placeholder="Search" aria-label="Search products">
                 </form>
-                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">3</span></a>
-                <button type="button" class="btn btn-outline-shoqan btn-sm" disabled title="Login page is planned">Login</button>
+                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">0</span></a>
+                <button type="button" class="btn btn-outline-shoqan btn-sm theme-toggle" aria-pressed="false">Dark mode</button>
             </div>
         </div>
     </header>
@@ -71,30 +76,39 @@
         <div class="row g-5">
             <section id="message" class="col-lg-6" aria-labelledby="message-title">
                 <h2 id="message-title" class="mb-3">Send us a message</h2>
-                <form action="contact.html" method="get">
+                <p class="small text-muted">Student demo: the form checks your entries locally. It does not send a message.</p>
+                <noscript><p class="notice">Enable JavaScript to try form validation and the frequently asked questions.</p></noscript>
+                <form id="contact-form" novalidate>
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" name="name" class="form-control rounded-0" required>
+                        <input type="text" id="name" name="name" class="form-control rounded-0" autocomplete="name" maxlength="80" required aria-describedby="name-error">
+                        <p id="name-error" class="field-error" aria-live="polite"></p>
                     </div>
                     <div class="mb-3">
                         <label for="contact-email" class="form-label">E-mail</label>
-                        <input type="email" id="contact-email" name="email" class="form-control rounded-0" required>
+                        <input type="email" id="contact-email" name="email" class="form-control rounded-0" autocomplete="email" maxlength="120" required aria-describedby="contact-email-error">
+                        <p id="contact-email-error" class="field-error" aria-live="polite"></p>
                     </div>
                     <div class="mb-3">
                         <label for="subject" class="form-label">Subject</label>
-                        <select id="subject" name="subject" class="form-select rounded-0">
-                            <option>Question about an order</option>
-                            <option>Book a fitting</option>
-                            <option>Returns</option>
-                            <option>Other</option>
+                        <select id="subject" name="subject" class="form-select rounded-0" required aria-describedby="subject-error">
+                            <option value="">Choose a subject</option>
+                            <option value="order">Question about an order</option>
+                            <option value="fitting">Book a fitting</option>
+                            <option value="returns">Returns</option>
+                            <option value="other">Other</option>
                         </select>
+                        <p id="subject-error" class="field-error" aria-live="polite"></p>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 message-field">
                         <label for="text" class="form-label">Your message</label>
-                        <textarea id="text" name="message" rows="5" class="form-control rounded-0" required></textarea>
+                        <textarea id="text" name="message" rows="5" class="form-control rounded-0" minlength="10" maxlength="1000" required aria-describedby="message-count text-error"></textarea>
+                        <p id="message-count" class="message-count small text-muted mt-1 mb-1">0 / 1000 characters (minimum 10)</p>
+                        <p id="text-error" class="field-error" aria-live="polite"></p>
                     </div>
-                    <button type="submit" class="btn btn-shoqan w-100">Send message</button>
+                    <button type="submit" class="btn btn-shoqan w-100">Check demo message</button>
                 </form>
+                <div id="contact-success" class="form-success mt-3" tabindex="-1" role="status" hidden></div>
             </section>
 
             <section class="col-lg-6" aria-labelledby="info-title">
@@ -115,11 +129,49 @@
                 </table>
 
                 <div class="map-box">
-                    <iframe title="Map: SHOQAN boutique in Astana" src="https://www.openstreetmap.org/export/embed.html?bbox=71.40%2C51.08%2C71.44%2C51.10&amp;layer=mapnik&amp;marker=51.0897%2C71.4161" loading="lazy"></iframe>
-                    <span class="map-label">SHOQAN boutique</span>
+                    <span class="map-label">Astana boutique</span>
+                    <h3>Visit SHOQAN</h3>
+                    <p>Mangilik El Ave 55, Astana<br>Free fittings in our boutique.</p>
+                    <a href="https://www.openstreetmap.org/?mlat=51.0897&amp;mlon=71.4161#map=16/51.0897/71.4161" class="btn btn-outline-shoqan" target="_blank" rel="noopener">Open location on map</a>
                 </div>
             </section>
         </div>
+
+        <section class="faq-section pt-5 mt-5 border-top" aria-labelledby="faq-title">
+            <h2 id="faq-title" class="mb-4">Frequently asked questions</h2>
+            <div class="faq-item">
+                <h3 class="faq-heading">
+                    <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-tailoring">How does free tailoring work?<span class="faq-icon" aria-hidden="true">+</span></button>
+                </h3>
+                <div id="faq-tailoring" class="faq-answer" hidden>
+                    <p>We shorten sleeves and trousers in our atelier within 3 days. Visit the boutique with your SHOQAN purchase for a fitting.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-heading">
+                    <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-delivery">What does delivery cost?<span class="faq-icon" aria-hidden="true">+</span></button>
+                </h3>
+                <div id="faq-delivery" class="faq-answer" hidden>
+                    <p>Courier delivery costs 2 000 ₸ and is free from a 50 000 ₸ product subtotal before discounts. Boutique pickup is always free. Kazpost costs 3 000 ₸. Choose a method at checkout to see the total.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-heading">
+                    <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-returns">Can I return an item?<span class="faq-icon" aria-hidden="true">+</span></button>
+                </h3>
+                <div id="faq-returns" class="faq-answer" hidden>
+                    <p>You can return an item within 14 days if its tags are still on. Contact the boutique for help with a return.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-heading">
+                    <button type="button" class="faq-toggle" aria-expanded="false" aria-controls="faq-sizing">How do I choose my size?<span class="faq-icon" aria-hidden="true">+</span></button>
+                </h3>
+                <div id="faq-sizing" class="faq-answer" hidden>
+                    <p>Open the <a href="product.html#size-guide">size guide</a>, compare your body measurements, and choose a size on the product page before adding it to the cart.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -128,10 +180,10 @@
                 <div class="col-6 col-md-3">
                     <h3 class="footer-title">Shop</h3>
                     <ul class="footer-links">
-                        <li><a href="catalog.html">Suits</a></li>
-                        <li><a href="catalog.html">Shirts</a></li>
-                        <li><a href="catalog.html">Coats</a></li>
-                        <li><a href="catalog.html">Trousers</a></li>
+                        <li><a href="catalog.html?category=suits">Suits</a></li>
+                        <li><a href="catalog.html?category=shirts">Shirts</a></li>
+                        <li><a href="catalog.html?category=coats">Coats</a></li>
+                        <li><a href="catalog.html?category=trousers">Trousers</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3">
