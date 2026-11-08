@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/catalog.css">
+    <link rel="icon" href="images/suit-navy.svg" type="image/svg+xml">
+    <script src="js/data.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/catalog.js" defer></script>
 </head>
 <body>
 
@@ -31,8 +35,8 @@
                 <form class="search-form" action="catalog.html" method="get" role="search">
                     <input type="search" name="q" class="form-control form-control-sm rounded-0" placeholder="Search" aria-label="Search products">
                 </form>
-                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">3</span></a>
-                <button type="button" class="btn btn-outline-shoqan btn-sm" disabled title="Login page is planned">Login</button>
+                <a href="cart.html" class="btn btn-shoqan btn-sm cart-btn">Cart <span class="cart-count">0</span></a>
+                <button type="button" class="btn btn-outline-shoqan btn-sm theme-toggle" aria-pressed="false">Dark mode</button>
             </div>
         </div>
     </header>
@@ -46,11 +50,21 @@
         </nav>
 
         <h1 class="mb-4">Catalog</h1>
+        <noscript><p class="alert alert-info">Please enable JavaScript to search products and use your cart.</p></noscript>
 
         <div class="row g-4">
             <aside class="col-lg-3">
-                <form class="filters" action="catalog.html" method="get">
-                    <fieldset class="mb-4">
+                <form id="catalog-filters" class="filters" action="catalog.html" method="get">
+                    <div class="mb-3">
+                        <label for="catalog-search" class="filter-title">Search products</label>
+                        <input type="search" id="catalog-search" name="q" class="form-control rounded-0" placeholder="Try navy or shirt">
+                    </div>
+                    <div class="form-check mb-4">
+                        <input type="checkbox" id="favorites-only" class="form-check-input">
+                        <label for="favorites-only" class="form-check-label">Favorites only</label>
+                    </div>
+
+                    <fieldset class="mb-3">
                         <legend class="filter-title">Category</legend>
                         <div class="form-check">
                             <input class="form-check-input rounded-0" type="checkbox" id="category-suits" name="category" value="suits">
@@ -68,133 +82,105 @@
                             <input class="form-check-input rounded-0" type="checkbox" id="category-trousers" name="category" value="trousers">
                             <label class="form-check-label" for="category-trousers">Trousers</label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input rounded-0" type="checkbox" id="category-accessories" name="category" value="accessories">
+                            <label class="form-check-label" for="category-accessories">Accessories</label>
+                        </div>
                     </fieldset>
 
-                    <fieldset class="mb-4">
+                    <fieldset class="mb-3">
                         <legend class="filter-title">Size</legend>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="size-s" name="size" value="s">
-                            <label class="form-check-label" for="size-s">S</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="size-m" name="size" value="m">
-                            <label class="form-check-label" for="size-m">M</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="size-l" name="size" value="l">
-                            <label class="form-check-label" for="size-l">L</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="size-xl" name="size" value="xl">
-                            <label class="form-check-label" for="size-xl">XL</label>
+                        <div class="filter-options-grid">
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="size-s" name="size" value="S">
+                                <label class="form-check-label" for="size-s">S</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="size-m" name="size" value="M">
+                                <label class="form-check-label" for="size-m">M</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="size-l" name="size" value="L">
+                                <label class="form-check-label" for="size-l">L</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="size-xl" name="size" value="XL">
+                                <label class="form-check-label" for="size-xl">XL</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="size-xxl" name="size" value="XXL">
+                                <label class="form-check-label" for="size-xxl">XXL</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="size-one" name="size" value="One size">
+                                <label class="form-check-label" for="size-one">One size</label>
+                            </div>
                         </div>
                     </fieldset>
 
-                    <fieldset class="mb-4">
+                    <fieldset class="mb-3">
                         <legend class="filter-title">Color</legend>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="color-black" name="color" value="black">
-                            <label class="form-check-label" for="color-black">Black</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="color-navy" name="color" value="navy">
-                            <label class="form-check-label" for="color-navy">Navy</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input rounded-0" type="checkbox" id="color-grey" name="color" value="grey">
-                            <label class="form-check-label" for="color-grey">Grey</label>
+                        <div class="filter-options-grid">
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-black" name="color" value="black">
+                                <label class="form-check-label" for="color-black">Black</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-navy" name="color" value="navy">
+                                <label class="form-check-label" for="color-navy">Navy</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-grey" name="color" value="grey">
+                                <label class="form-check-label" for="color-grey">Grey</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-white" name="color" value="white">
+                                <label class="form-check-label" for="color-white">White</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-blue" name="color" value="blue">
+                                <label class="form-check-label" for="color-blue">Blue</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-camel" name="color" value="camel">
+                                <label class="form-check-label" for="color-camel">Camel</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rounded-0" type="checkbox" id="color-burgundy" name="color" value="burgundy">
+                                <label class="form-check-label" for="color-burgundy">Burgundy</label>
+                            </div>
                         </div>
                     </fieldset>
 
-                    <fieldset class="mb-4">
+                    <fieldset class="mb-3">
                         <legend class="filter-title">Price range</legend>
-                        <label for="price-max" class="form-label small text-muted">Up to 200 000 ₸</label>
+                        <label for="price-max" class="form-label small">Up to <output id="price-label" for="price-max">200 000 ₸</output></label>
                         <input type="range" class="form-range" id="price-max" name="price" min="10000" max="200000" step="5000" value="200000">
                     </fieldset>
-
-                    <button type="submit" class="btn btn-shoqan w-100">Apply filters</button>
+                    <p class="small text-muted mb-3">Results update as you change a filter.</p>
+                    <button type="button" id="reset-filters" class="btn btn-outline-shoqan w-100">Reset filters</button>
                 </form>
             </aside>
 
             <section class="col-lg-9" aria-label="Products">
                 <div class="catalog-toolbar mb-3">
-                    <p class="mb-0 text-muted">Showing <span class="fw-bold">9</span> of 27 products</p>
+                    <p id="result-count" class="mb-0 text-muted" role="status" aria-live="polite"></p>
                     <div class="d-flex align-items-center gap-2">
                         <label for="sort" class="small text-nowrap">Sort by</label>
                         <select id="sort" name="sort" class="form-select form-select-sm rounded-0">
-                            <option>Newest</option>
-                            <option>Price: low to high</option>
-                            <option>Price: high to low</option>
+                            <option value="featured">Featured</option>
+                            <option value="price-asc">Price: low to high</option>
+                            <option value="price-desc">Price: high to low</option>
+                            <option value="name">Name: A to Z</option>
                         </select>
                     </div>
                 </div>
 
-                <div class="catalog-grid">
-                    <article class="product-card">
-                        <img src="images/suit-navy.svg" alt="Navy wool suit">
-                        <h3><a href="product.html">Navy Wool Suit</a></h3>
-                        <p class="price">159 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/suit-charcoal.svg" alt="Charcoal two-piece suit">
-                        <h3><a href="product.html">Charcoal Two-Piece Suit</a></h3>
-                        <p class="price">149 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/suit-black.svg" alt="Black evening suit">
-                        <h3><a href="product.html">Black Evening Suit</a></h3>
-                        <p class="price">169 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/shirt-white.svg" alt="White poplin shirt">
-                        <h3><a href="product.html">Poplin Shirt, White</a></h3>
-                        <p class="price">22 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/shirt-blue.svg" alt="Light blue oxford shirt">
-                        <h3><a href="product.html">Oxford Shirt, Sky Blue</a></h3>
-                        <p class="price">24 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <span class="badge-sale">Sale</span>
-                        <img src="images/coat-camel.svg" alt="Camel overcoat">
-                        <h3><a href="product.html">Camel Overcoat</a></h3>
-                        <p class="price">139 900 ₸ <del>174 900 ₸</del></p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <span class="badge-sale">Sale</span>
-                        <img src="images/coat-grey.svg" alt="Grey double-breasted coat">
-                        <h3><a href="product.html">Double-Breasted Coat</a></h3>
-                        <p class="price">127 900 ₸ <del>159 900 ₸</del></p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/trousers-grey.svg" alt="Grey flannel trousers">
-                        <h3><a href="product.html">Flannel Trousers</a></h3>
-                        <p class="price">34 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
-                    <article class="product-card">
-                        <img src="images/trousers-navy.svg" alt="Navy pleated trousers">
-                        <h3><a href="product.html">Pleated Trousers, Navy</a></h3>
-                        <p class="price">36 900 ₸</p>
-                        <a href="cart.html" class="btn btn-shoqan w-100">Add to cart</a>
-                    </article>
+                <div id="catalog-products" class="catalog-grid"></div>
+                <div id="catalog-empty" class="catalog-empty" hidden>
+                    <h2>No products found</h2>
+                    <p class="mb-0">Try a different search or reset your filters. Save products to see them in Favorites.</p>
                 </div>
-
-                <nav class="mt-5" aria-label="Catalog pages">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="catalog.html">1</a></li>
-                        <li class="page-item active" aria-current="page"><span class="page-link">2</span></li>
-                        <li class="page-item"><a class="page-link" href="catalog.html">3</a></li>
-                    </ul>
-                </nav>
             </section>
         </div>
     </main>
@@ -205,10 +191,10 @@
                 <div class="col-6 col-md-3">
                     <h3 class="footer-title">Shop</h3>
                     <ul class="footer-links">
-                        <li><a href="catalog.html">Suits</a></li>
-                        <li><a href="catalog.html">Shirts</a></li>
-                        <li><a href="catalog.html">Coats</a></li>
-                        <li><a href="catalog.html">Trousers</a></li>
+                        <li><a href="catalog.html?category=suits">Suits</a></li>
+                        <li><a href="catalog.html?category=shirts">Shirts</a></li>
+                        <li><a href="catalog.html?category=coats">Coats</a></li>
+                        <li><a href="catalog.html?category=trousers">Trousers</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md-3">

@@ -12,26 +12,39 @@
     position: absolute;
     bottom: 1rem;
     left: 1rem;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--paper);
+    color: var(--ink);
     padding: 0.2rem 0.6rem;
     font-size: 0.8rem;
 }
 
 .thumbs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0.75rem;
+}
+
+.gallery-thumb {
+    padding: 0;
+    background: transparent;
+    border: 2px solid var(--line);
+    cursor: pointer;
 }
 
 .thumbs img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border: 1px solid var(--line);
 }
 
-.thumbs img:hover {
-    border-color: var(--navy);
+.gallery-thumb:hover,
+.gallery-thumb[aria-pressed="true"] {
+    border-color: var(--brass);
+}
+
+.gallery-thumb:focus-visible {
+    outline: 2px dashed var(--navy);
+    outline-offset: 3px;
 }
 
 .product-price {
@@ -70,6 +83,8 @@
 .options input[type="radio"] {
     position: absolute;
     opacity: 0;
+    width: 1px;
+    height: 1px;
 }
 
 .size-box {
@@ -82,35 +97,12 @@
 
 .options input:checked + .size-box {
     background-color: var(--ink);
-    color: #ffffff;
-}
-
-.color-box {
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--line);
-    outline-offset: 2px;
-    cursor: pointer;
-}
-
-.options input:checked + .color-box {
-    outline: 2px solid var(--brass);
+    color: var(--paper);
 }
 
 .options input:focus-visible + label {
     outline: 2px dashed var(--navy);
-}
-
-#swatch-black {
-    background-color: #1b1c20;
-}
-
-#swatch-navy {
-    background-color: #26365c;
-}
-
-#swatch-grey {
-    background-color: #9a9ea6;
+    outline-offset: 3px;
 }
 
 .qty-input {
@@ -119,9 +111,10 @@
 
 .info-block {
     border: 1px solid var(--line);
-    background-color: #ffffff;
+    background-color: var(--surface, var(--paper));
     padding: 0.9rem 1rem;
     margin-bottom: 0.75rem;
+    scroll-margin-top: 120px;
 }
 
 .info-block summary {
@@ -146,7 +139,7 @@
 
 @media (max-width: 575.98px) {
     .thumbs {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .option-group {
