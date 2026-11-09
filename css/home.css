@@ -131,3 +131,36 @@
         flex-direction: column;
     }
 }
+
+
+.currency-controls {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 1rem;
+}
+.currency-product-field { grid-column: 1 / -1; }
+.currency-rates {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+.rate-card {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    background-color: var(--stone);
+}
+.rate-card dt { font-size: 0.8rem; color: var(--muted); }
+.rate-card dd { font-weight: 700; margin: 0.2rem 0 0; }
+.currency-result {
+    padding: 1rem;
+    border-left: 3px solid var(--brass);
+    background-color: var(--stone);
+    font-weight: 700;
+}
+#currency-tool[data-state="error"] #currency-status,
+#currency-tool[data-state="empty"] #currency-status { color: #a32130; }
+html[data-theme="dark"] #currency-tool[data-state="error"] #currency-status,
+html[data-theme="dark"] #currency-tool[data-state="empty"] #currency-status { color: #ffb2b9; }
+@media (max-width: 575.98px) {
+    .currency-rates { grid-template-columns: 1fr; }
+}

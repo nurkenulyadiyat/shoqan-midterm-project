@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const isFavorite = store.getFavorites().includes(product.id);
         favoriteButton.dataset.favorite = product.id;
         favoriteButton.setAttribute("aria-pressed", String(isFavorite));
-        favoriteButton.classList.toggle("is-favorite", isFavorite);
         favoriteButton.setAttribute("aria-label", isFavorite ? "Remove " + product.name + " from favorites" : "Save " + product.name + " to favorites");
         favoriteButton.textContent = isFavorite ? "Saved" : "Save";
         favoriteButton.classList.toggle("is-favorite", isFavorite);
@@ -119,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         quantity.removeAttribute("aria-invalid");
     }
 
-
+                                                                              
     function openLinkedDetails() {
         const target = document.getElementById(window.location.hash.slice(1));
         if (target && target.tagName === "DETAILS") {
@@ -171,5 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     renderProduct();
     renderRelatedProducts();
+    store.rememberProduct(product.id);
     openLinkedDetails();
 });

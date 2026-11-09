@@ -35,6 +35,7 @@
         }
 
         function updateMessageCount(field) {
+                                                                                       
             $(field).closest(".message-field").find(".message-count").text(
                 field.value.length + " / 1000 characters (minimum 10)"
             );
@@ -67,7 +68,7 @@
             }
         });
 
-  
+                                                         
         $("#text").on("input", function () {
             updateMessageCount(this);
         });
@@ -79,7 +80,7 @@
             const answer = item.find(".faq-answer");
             const willOpen = button.attr("aria-expanded") !== "true";
             $(".faq-toggle").not(this).attr("aria-expanded", "false").find(".faq-icon").text("+");
-            
+                                                                                        
             $(".faq-item").not(item).find(".faq-answer").stop(true, true).slideUp(duration);
             button.attr("aria-expanded", String(willOpen)).find(".faq-icon").text(willOpen ? "−" : "+");
             if (willOpen) {

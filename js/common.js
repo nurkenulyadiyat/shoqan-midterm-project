@@ -17,6 +17,7 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
     }
 
+                                                                              
     function readStorage(key, fallback) {
         if (!storageAvailable) return memory[key] === undefined ? fallback : memory[key];
         let raw;
@@ -40,16 +41,18 @@
         memory[key] = value;
         try {
             localStorage.setItem("shoqan." + key, JSON.stringify(value));
+            return true;
         } catch (error) {
             storageAvailable = false;
             notify("Browser storage is unavailable. Changes will last only on this page.");
+            return false;
         }
     }
 
     function cleanCart(value) {
         const cart = [];
         if (!Array.isArray(value)) return cart;
-   
+                                                                
         for (const row of value) {
             if (!row || typeof row !== "object") continue;
             const product = getProduct(row.id);
@@ -188,7 +191,9 @@
         const size = product.sizes.includes("M") ? "M" : product.sizes[0];
         const hint = document.createElement("p");
         hint.className = "small text-muted mb-2";
-        hint.textContent = "Quick add: " + size + ". Open item for other sizes.";
+        hint.textContent = product.sizes.length > 1
+            ? "Quick add: " + size + ". Open item for other sizes."
+            : "Quick add: " + size + ".";
         card.appendChild(hint);
         const actions = document.createElement("div");
         actions.className = "card-actions";
@@ -213,7 +218,7 @@
 
     Object.assign(S, {
         getProduct, formatPrice, isValidEmail, getCart, setCart, addToCart,
-        getFavorites, toggleFavorite, notify, createProductCard
+        getFavorites, toggleFavorite, notify, createProductCard, readStorage, writeStorage
     });
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -229,7 +234,7 @@
         });
     });
 
-    
+                                                                          
     document.addEventListener("click", function (event) {
         const add = event.target.closest("[data-add-product]");
         if (add) {

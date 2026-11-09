@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/recent.css">
 </head>
 <body>
 
@@ -78,11 +79,58 @@
             </div>
         </section>
 
+        <section id="recently-viewed" class="container py-5" aria-labelledby="recent-title">
+            <div class="recent-heading">
+                <h2 id="recent-title">Recently viewed</h2>
+                <button type="button" id="clear-recent" class="btn btn-outline-shoqan btn-sm">Clear history</button>
+            </div>
+            <p id="recent-empty" class="text-muted">Open a product page to start your browsing history.</p>
+            <div id="recent-products"></div>
+            <p id="recent-status" class="small mt-3" role="status" aria-live="polite" tabindex="-1"></p>
+        </section>
+
+        <section id="currency-tool" class="container py-5 border-top" aria-labelledby="currency-title" data-state="loading" aria-busy="true">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <h2 id="currency-title">A price in your currency</h2>
+                    <p>Estimate a product price in US dollars or euros using remote exchange rates. Shop and checkout prices remain in tenge.</p>
+                    <p class="small text-muted">Estimates exclude delivery. Your bank may use a different rate.</p>
+                    <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener" class="small">Rates By Exchange Rate API</a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="currency-controls">
+                        <div class="currency-product-field">
+                            <label for="currency-product" class="form-label">Product</label>
+                            <select id="currency-product" class="form-select rounded-0"></select>
+                        </div>
+                        <div>
+                            <label for="currency-quantity" class="form-label">Quantity</label>
+                            <input id="currency-quantity" type="number" min="1" max="10" step="1" value="1" class="form-control rounded-0" aria-describedby="currency-quantity-error">
+                            <p id="currency-quantity-error" class="field-error" aria-live="polite"></p>
+                        </div>
+                        <div>
+                            <label for="currency-code" class="form-label">Currency</label>
+                            <select id="currency-code" class="form-select rounded-0" disabled>
+                                <option value="USD">USD — US dollar</option>
+                                <option value="EUR">EUR — Euro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p id="currency-status" class="small mt-3" role="status" aria-live="polite">Loading exchange rates…</p>
+                    <dl id="currency-rates" class="currency-rates"></dl>
+                    <p id="currency-result" class="currency-result" role="status" aria-live="polite" hidden></p>
+                    <button type="button" id="currency-refresh" class="btn btn-outline-shoqan btn-sm">Refresh rates / retry</button>
+                    <noscript><p class="notice mt-3">Enable JavaScript to use the currency calculator.</p></noscript>
+                </div>
+            </div>
+        </section>
+
         <section class="benefits" aria-label="Why SHOQAN">
             <div class="container benefits-list py-4">
                 <div class="benefit">
                     <h3>Free tailoring</h3>
                     <p>Sleeves and trousers shortened in our atelier within 3 days.</p>
+                    <a href="contact.html#fitting" class="small">Book a fitting</a>
                 </div>
                 <div class="benefit">
                     <h3>Delivery across Kazakhstan</h3>
@@ -160,5 +208,7 @@
     <script src="js/data.js" defer></script>
     <script src="js/common.js" defer></script>
     <script src="js/home.js" defer></script>
+    <script src="js/recent.js" defer></script>
+    <script src="js/currency.js" defer></script>
 </body>
 </html>

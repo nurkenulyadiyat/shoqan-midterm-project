@@ -15,6 +15,7 @@
     <script src="js/common.js" defer></script>
     <script src="js/vendor/jquery.min.js" defer></script>
     <script src="js/contact.js" defer></script>
+    <script src="js/bookings.js" defer></script>
 </head>
 <body>
 
@@ -136,6 +137,75 @@
                 </div>
             </section>
         </div>
+
+        <section id="fitting" class="booking-section pt-5 mt-5 border-top" aria-labelledby="booking-title">
+            <h2 id="booking-title" class="mb-3">Book a fitting</h2>
+            <p>Choose a fitting at our Astana boutique, then manage your saved appointments below.</p>
+            <p class="notice mb-4">Demo appointments are saved in this browser. No real reservation is sent.</p>
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="booking-form-panel">
+                        <h3 id="booking-form-title" class="mb-3">Add an appointment</h3>
+                        <form id="booking-form" novalidate>
+                            <div class="mb-3">
+                                <label for="booking-name" class="form-label">Name</label>
+                                <input type="text" id="booking-name" name="name" class="form-control rounded-0" autocomplete="name" maxlength="80" required aria-describedby="booking-name-error">
+                                <p id="booking-name-error" class="field-error" aria-live="polite"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="booking-service" class="form-label">Service</label>
+                                <select id="booking-service" name="service" class="form-select rounded-0" required aria-describedby="booking-service-error">
+                                    <option value="">Choose a service</option>
+                                    <option value="suit">Suit fitting</option>
+                                    <option value="shirt">Shirt fitting</option>
+                                    <option value="alterations">Alterations consultation</option>
+                                </select>
+                                <p id="booking-service-error" class="field-error" aria-live="polite"></p>
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm-7">
+                                    <label for="booking-date" class="form-label">Date</label>
+                                    <input type="date" id="booking-date" name="date" class="form-control rounded-0" required aria-describedby="booking-date-hint booking-date-error">
+                                    <p id="booking-date-error" class="field-error" aria-live="polite"></p>
+                                </div>
+                                <div class="col-sm-5">
+                                    <label for="booking-time" class="form-label">Time</label>
+                                    <select id="booking-time" name="time" class="form-select rounded-0" required aria-describedby="booking-time-error">
+                                        <option value="">Choose a time</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="17:00">17:00</option>
+                                    </select>
+                                    <p id="booking-time-error" class="field-error" aria-live="polite"></p>
+                                </div>
+                            </div>
+                            <p id="booking-date-hint" class="small text-muted">Choose a future slot within the next 90 days. Dates and times use your device's local time.</p>
+                            <div class="mb-3">
+                                <label for="booking-notes" class="form-label">Notes <span class="text-muted">(optional)</span></label>
+                                <textarea id="booking-notes" name="notes" rows="3" class="form-control rounded-0" maxlength="300" aria-describedby="booking-notes-error" placeholder="For example, trousers need shortening"></textarea>
+                                <p id="booking-notes-error" class="field-error" aria-live="polite"></p>
+                            </div>
+                            <p id="booking-form-error" class="field-error mb-3" role="alert"></p>
+                            <div class="booking-actions">
+                                <button type="submit" id="booking-submit" class="btn btn-shoqan">Add booking</button>
+                                <button type="button" id="booking-cancel" class="btn btn-outline-shoqan" hidden>Cancel edit</button>
+                            </div>
+                        </form>
+                        <p id="booking-feedback" class="small mt-3 mb-0" role="status" aria-live="polite"></p>
+                    </div>
+                </div>
+                <section class="col-lg-7" aria-labelledby="bookings-saved-title">
+                    <div class="booking-list-heading">
+                        <h3 id="bookings-saved-title" class="mb-0">Saved appointments</h3>
+                        <button type="button" id="bookings-clear" class="btn btn-outline-shoqan btn-sm" disabled>Clear all</button>
+                    </div>
+                    <p id="booking-count" class="small text-muted mt-2" aria-live="polite">0 saved appointments</p>
+                    <p id="bookings-empty" class="empty-state">No saved appointments yet. Use the form to add your first fitting.</p>
+                    <ul id="booking-list" class="booking-list" hidden></ul>
+                </section>
+            </div>
+        </section>
 
         <section class="faq-section pt-5 mt-5 border-top" aria-labelledby="faq-title">
             <h2 id="faq-title" class="mb-4">Frequently asked questions</h2>

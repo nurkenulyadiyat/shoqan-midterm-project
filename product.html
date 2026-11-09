@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/recent.css">
     <link rel="icon" href="images/suit-navy.svg" type="image/svg+xml">
     <script src="js/data.js" defer></script>
     <script src="js/common.js" defer></script>
+    <script src="js/recent.js" defer></script>
     <script src="js/product.js" defer></script>
 </head>
 <body>
@@ -135,6 +137,15 @@
                 <div id="related-products" class="row g-4"></div>
             </section>
         </div>
+        <section id="recently-viewed" class="pt-5 mt-5 border-top" aria-labelledby="recent-title">
+            <div class="recent-heading">
+                <h2 id="recent-title">Recently viewed</h2>
+                <button type="button" id="clear-recent" class="btn btn-outline-shoqan btn-sm" disabled>Clear history</button>
+            </div>
+            <p id="recent-empty">Open a product from the <a href="catalog.html">catalog</a> to see it here. Your six most recent products will appear in this section.</p>
+            <div id="recent-products"></div>
+            <p id="recent-status" role="status" aria-live="polite" tabindex="-1"></p>
+        </section>
     </main>
 
     <footer class="site-footer">

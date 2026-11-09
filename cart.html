@@ -76,6 +76,14 @@
                 </div>
                 <p id="cart-feedback" class="small" role="status"></p>
                 <a href="catalog.html" class="small">Continue shopping</a>
+
+                <section id="cart-statistics" class="cart-statistics mt-4" aria-labelledby="cart-statistics-title">
+                    <h2 id="cart-statistics-title" class="summary-title">Your cart by category</h2>
+                    <p id="cart-statistics-description" class="small text-muted">Product subtotals before promo discounts and delivery. Each bar shows a category's share of the product subtotal.</p>
+                    <p id="cart-statistics-summary" class="small" role="status">0 items across 0 categories.</p>
+                    <p id="cart-statistics-empty" class="text-muted mb-0">Add products to see your category breakdown.</p>
+                    <ul id="category-chart" class="category-chart" aria-describedby="cart-statistics-description" hidden></ul>
+                </section>
             </section>
 
             <aside class="col-lg-4">
@@ -106,82 +114,127 @@
         <section id="checkout" class="pt-5 mt-5 border-top" aria-labelledby="checkout-title" hidden>
             <h2 id="checkout-title" class="mb-3">Checkout details</h2>
             <p class="notice mb-4">Student demo: use example details. This form demonstrates validation; it does not send an order or collect a payment.</p>
+            <ol class="checkout-progress" aria-label="Checkout progress">
+                <li data-checkout-progress="1" aria-current="step"><span class="step-number" aria-hidden="true">1</span>Customer</li>
+                <li data-checkout-progress="2"><span class="step-number" aria-hidden="true">2</span>Delivery</li>
+                <li data-checkout-progress="3"><span class="step-number" aria-hidden="true">3</span>Review</li>
+            </ol>
+            <p id="checkout-step-status" class="small text-muted" role="status">Step 1 of 3: Customer details</p>
+
             <form id="checkout-form" novalidate>
-                <div class="row g-4">
-                    <div class="col-lg-7">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="full-name" class="form-label">Full name</label>
-                                <input type="text" id="full-name" name="name" class="form-control rounded-0" autocomplete="name" maxlength="80" required aria-describedby="full-name-error">
-                                <p id="full-name-error" class="field-error" aria-live="polite"></p>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">E-mail</label>
-                                <input type="email" id="email" name="email" class="form-control rounded-0" autocomplete="email" maxlength="120" required aria-describedby="email-error">
-                                <p id="email-error" class="field-error" aria-live="polite"></p>
-                            </div>
-                            <div class="col-12">
-                                <label for="phone" class="form-label">Phone</label>
-                                <input type="tel" id="phone" name="phone" class="form-control rounded-0" autocomplete="tel" placeholder="+7 777 123 45 67" maxlength="30" required aria-describedby="phone-error">
-                                <p id="phone-error" class="field-error" aria-live="polite"></p>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="city" class="form-label">City</label>
-                                <input type="text" id="city" name="city" class="form-control rounded-0" autocomplete="address-level2" maxlength="60" required aria-describedby="address-hint city-error">
-                                <p id="city-error" class="field-error" aria-live="polite"></p>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="address" class="form-label">Address</label>
-                                <input type="text" id="address" name="address" class="form-control rounded-0" autocomplete="street-address" maxlength="160" required aria-describedby="address-hint address-error">
-                                <p id="address-error" class="field-error" aria-live="polite"></p>
-                            </div>
-                            <div class="col-12">
-                                <label for="postal" class="form-label">Postal code <span class="text-muted">(optional)</span></label>
-                                <input type="text" id="postal" name="postal" class="form-control rounded-0" autocomplete="postal-code" inputmode="numeric" maxlength="6" aria-describedby="postal-error">
-                                <p id="postal-error" class="field-error" aria-live="polite"></p>
-                            </div>
+                <section id="checkout-step-1" class="checkout-step" data-checkout-step="1" aria-labelledby="checkout-step-title-1">
+                    <h3 id="checkout-step-title-1" class="mb-3" tabindex="-1">Customer details</h3>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="full-name" class="form-label">Full name</label>
+                            <input type="text" id="full-name" name="name" class="form-control rounded-0" autocomplete="name" maxlength="80" required aria-describedby="full-name-error">
+                            <p id="full-name-error" class="field-error" aria-live="polite"></p>
                         </div>
-                        <p id="address-hint" class="small text-muted">Enter a delivery address, or choose boutique pickup.</p>
-                    </div>
-
-                    <div class="col-lg-5">
-                        <label for="delivery" class="form-label">Delivery method</label>
-                        <select id="delivery" name="delivery" class="form-select rounded-0" required aria-describedby="delivery-error">
-                            <option value="courier">Courier (1–2 days)</option>
-                            <option value="pickup">Pickup from boutique</option>
-                            <option value="post">Kazpost (3–5 days)</option>
-                        </select>
-                        <p id="delivery-error" class="field-error" aria-live="polite"></p>
-
-                        <fieldset id="payment" class="mb-3" tabindex="-1" aria-describedby="payment-error">
-                            <legend class="form-label fs-6">Payment preference (demo only)</legend>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="pay-card" value="card" checked>
-                                <label class="form-check-label" for="pay-card">Credit card</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="pay-kaspi" value="kaspi">
-                                <label class="form-check-label" for="pay-kaspi">Kaspi QR</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="payment" id="pay-bank" value="bank">
-                                <label class="form-check-label" for="pay-bank">Bank transfer</label>
-                            </div>
-                            <p id="payment-error" class="field-error" aria-live="polite"></p>
-                        </fieldset>
-
-                        <label for="comment" class="form-label">Order comment <span class="text-muted">(optional)</span></label>
-                        <textarea id="comment" name="comment" rows="3" class="form-control rounded-0" maxlength="500" aria-describedby="comment-error"></textarea>
-                        <p id="comment-error" class="field-error" aria-live="polite"></p>
-
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
-                            <label class="form-check-label" for="terms">I understand that this checkout is a demonstration.</label>
-                            <p id="terms-error" class="field-error" aria-live="polite"></p>
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" id="email" name="email" class="form-control rounded-0" autocomplete="email" maxlength="120" required aria-describedby="email-error">
+                            <p id="email-error" class="field-error" aria-live="polite"></p>
                         </div>
-                        <p id="checkout-error" class="field-error" role="alert"></p>
-                        <button type="submit" class="btn btn-shoqan w-100">Place demo order</button>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" id="phone" name="phone" class="form-control rounded-0" autocomplete="tel" placeholder="+7 777 123 45 67" maxlength="30" required aria-describedby="phone-error">
+                            <p id="phone-error" class="field-error" aria-live="polite"></p>
+                        </div>
                     </div>
+                </section>
+
+                <section id="checkout-step-2" class="checkout-step" data-checkout-step="2" aria-labelledby="checkout-step-title-2" hidden>
+                    <h3 id="checkout-step-title-2" class="mb-3" tabindex="-1">Delivery and payment preference</h3>
+                    <div class="row g-4">
+                        <div class="col-lg-7">
+                            <label for="delivery" class="form-label">Delivery method</label>
+                            <select id="delivery" name="delivery" class="form-select rounded-0" required aria-describedby="delivery-error">
+                                <option value="courier">Courier (1–2 days)</option>
+                                <option value="pickup">Pickup from boutique</option>
+                                <option value="post">Kazpost (3–5 days)</option>
+                            </select>
+                            <p id="delivery-error" class="field-error" aria-live="polite"></p>
+                            <div class="row g-3 mt-1">
+                                <div class="col-md-6">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" id="city" name="city" class="form-control rounded-0" autocomplete="address-level2" maxlength="60" required aria-describedby="address-hint city-error">
+                                    <p id="city-error" class="field-error" aria-live="polite"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" id="address" name="address" class="form-control rounded-0" autocomplete="street-address" maxlength="160" required aria-describedby="address-hint address-error">
+                                    <p id="address-error" class="field-error" aria-live="polite"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="postal" class="form-label">Postal code <span class="text-muted">(optional)</span></label>
+                                    <input type="text" id="postal" name="postal" class="form-control rounded-0" autocomplete="postal-code" inputmode="numeric" maxlength="6" aria-describedby="postal-error">
+                                    <p id="postal-error" class="field-error" aria-live="polite"></p>
+                                </div>
+                            </div>
+                            <p id="address-hint" class="small text-muted mt-3">Enter a delivery address, or choose boutique pickup.</p>
+                        </div>
+                        <div class="col-lg-5">
+                            <fieldset id="payment" class="mb-3" tabindex="-1" aria-describedby="payment-error">
+                                <legend class="form-label fs-6">Payment preference (demo only)</legend>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment" id="pay-card" value="card" checked>
+                                    <label class="form-check-label" for="pay-card">Credit card</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment" id="pay-kaspi" value="kaspi">
+                                    <label class="form-check-label" for="pay-kaspi">Kaspi QR</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment" id="pay-bank" value="bank">
+                                    <label class="form-check-label" for="pay-bank">Bank transfer</label>
+                                </div>
+                                <p id="payment-error" class="field-error" aria-live="polite"></p>
+                            </fieldset>
+                            <label for="comment" class="form-label">Order comment <span class="text-muted">(optional)</span></label>
+                            <textarea id="comment" name="comment" rows="3" class="form-control rounded-0" maxlength="500" aria-describedby="comment-error"></textarea>
+                            <p id="comment-error" class="field-error" aria-live="polite"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="checkout-step-3" class="checkout-step" data-checkout-step="3" aria-labelledby="checkout-step-title-3" hidden>
+                    <h3 id="checkout-step-title-3" class="mb-3" tabindex="-1">Review your demo order</h3>
+                    <p class="small text-muted">Check the items and details below. Use Back to make changes.</p>
+                    <div class="row g-4">
+                        <div class="col-lg-7">
+                            <h4 class="h5">Items</h4>
+                            <ul id="review-items" class="review-items"></ul>
+                            <ul class="summary-list review-totals">
+                                <li><span>Product subtotal</span><span id="review-subtotal">0 ₸</span></li>
+                                <li><span>Delivery</span><span id="review-delivery-fee">0 ₸</span></li>
+                                <li><span id="review-discount-label">Discount</span><span id="review-discount">0 ₸</span></li>
+                                <li class="summary-total"><span>Total</span><span id="review-total" aria-live="polite">0 ₸</span></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5">
+                            <h4 class="h5">Customer and delivery</h4>
+                            <dl class="review-details">
+                                <dt>Name</dt><dd id="review-name"></dd>
+                                <dt>E-mail</dt><dd id="review-email"></dd>
+                                <dt>Phone</dt><dd id="review-phone"></dd>
+                                <dt>Delivery method</dt><dd id="review-delivery"></dd>
+                                <dt>Address</dt><dd id="review-address"></dd>
+                                <dt>Payment preference</dt><dd id="review-payment"></dd>
+                                <dt>Comment</dt><dd id="review-comment"></dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+                        <label class="form-check-label" for="terms">I understand that this checkout is a demonstration.</label>
+                        <p id="terms-error" class="field-error" aria-live="polite"></p>
+                    </div>
+                </section>
+
+                <p id="checkout-error" class="field-error mt-3" role="alert"></p>
+                <div class="checkout-navigation mt-4">
+                    <button type="button" id="checkout-back" class="btn btn-outline-shoqan" hidden>Back</button>
+                    <button type="submit" id="checkout-next" class="btn btn-shoqan">Continue to delivery</button>
                 </div>
             </form>
         </section>

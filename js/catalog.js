@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const colors = selectedValues("color");
         const favorites = store.getFavorites();
 
- 
+                                                                            
         return store.products.filter(function (product) {
             const searchableText = (product.name + " " + product.category + " " + product.color).toLowerCase();
             const matchesSearch = searchableText.includes(query);
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         emptyState.hidden = products.length !== 0;
     }
 
-
+                                                                          
     const parameters = new URLSearchParams(window.location.search);
     search.value = parameters.get("q") || "";
     headerSearch.value = search.value;
