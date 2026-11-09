@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
         quantity.removeAttribute("aria-invalid");
     }
 
-    // Links from the footer should also open the corresponding details block.
+
     function openLinkedDetails() {
         const target = document.getElementById(window.location.hash.slice(1));
         if (target && target.tagName === "DETAILS") {
