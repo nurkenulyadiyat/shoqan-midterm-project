@@ -17,7 +17,6 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
     }
 
-    // Some browsers block storage. The current page still works using memory.
     function readStorage(key, fallback) {
         if (!storageAvailable) return memory[key] === undefined ? fallback : memory[key];
         let raw;
@@ -50,7 +49,7 @@
     function cleanCart(value) {
         const cart = [];
         if (!Array.isArray(value)) return cart;
-        // A variant is identified by both its product and size.
+   
         for (const row of value) {
             if (!row || typeof row !== "object") continue;
             const product = getProduct(row.id);
@@ -230,7 +229,7 @@
         });
     });
 
-    // Delegation also handles product cards created after the page loads.
+    
     document.addEventListener("click", function (event) {
         const add = event.target.closest("[data-add-product]");
         if (add) {
