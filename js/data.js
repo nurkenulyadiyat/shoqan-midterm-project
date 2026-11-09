@@ -1,4 +1,4 @@
-/* One shared product array keeps names and prices consistent on all five pages. */
+
 window.SHOQAN = window.SHOQAN || {};
 window.SHOQAN.products = [
     {
