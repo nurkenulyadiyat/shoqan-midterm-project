@@ -296,7 +296,6 @@ img {
     }
 }
 
-/* Shared endterm controls retain the midterm colours and spacing. */
 [hidden] {
     display: none !important;
 }
