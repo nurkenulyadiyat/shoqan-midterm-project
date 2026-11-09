@@ -35,7 +35,6 @@
         }
 
         function updateMessageCount(field) {
-            // closest() finds the field wrapper; find() selects the counter inside it.
             $(field).closest(".message-field").find(".message-count").text(
                 field.value.length + " / 1000 characters (minimum 10)"
             );
@@ -68,7 +67,7 @@
             }
         });
 
-        // jQuery events use both ID and class selectors.
+  
         $("#text").on("input", function () {
             updateMessageCount(this);
         });
@@ -80,7 +79,7 @@
             const answer = item.find(".faq-answer");
             const willOpen = button.attr("aria-expanded") !== "true";
             $(".faq-toggle").not(this).attr("aria-expanded", "false").find(".faq-icon").text("+");
-            // Clear old animation queues so rapid clicks keep the accordion responsive.
+            
             $(".faq-item").not(item).find(".faq-answer").stop(true, true).slideUp(duration);
             button.attr("aria-expanded", String(willOpen)).find(".faq-icon").text(willOpen ? "−" : "+");
             if (willOpen) {
