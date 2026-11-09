@@ -39,7 +39,7 @@
             const row = document.createElement("tr");
             row.dataset.id = item.id;
             row.dataset.size = item.size;
-            // Only static markup goes into innerHTML; changing values use DOM properties.
+
             row.innerHTML = '<td><div class="cart-product"><img><div><a></a><small class="d-block text-muted"></small></div></div></td>' +
                 '<td class="item-size"></td>' +
                 '<td><input type="number" class="form-control form-control-sm rounded-0 qty" min="1" max="10" step="1"><p class="field-error quantity-error" aria-live="polite"></p></td>' +
@@ -222,7 +222,7 @@
             document.getElementById("order-confirmation-text").textContent = "Reference: " + reference + ". Total: " + shop.formatPrice(totals.total) + ".";
             checkoutForm.reset();
             updateDeliveryFields();
-            // Keep only products in browser storage; never store checkout contact details.
+   
             shop.setCart([]);
             document.getElementById("cart-feedback").textContent = "Your demo order is complete and your cart is now empty.";
             const confirmation = document.getElementById("order-confirmation");
